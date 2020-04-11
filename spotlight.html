@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>聚光灯效果</title>
+		<style>
+			html {
+				font-size: 15px;
+			}
+
+			body {
+				background-color: #222;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 100vh;
+			}
+
+			h1 {
+				color: #333;
+				font-family: helvetica;
+				margin: 0;
+				padding: 0;
+				font-size: 8rem;
+				letter-spacing: -0.3rem;
+				position: relative;
+			}
+
+			h1::after {
+				/*把内容重复 */
+				content: attr(data-spotlight); 
+				color: transparent;
+				position: absolute;
+				top: 0;
+				left: 0;
+				/* 关键：掩盖图片  ellips--只需要提供四个值。椭圆的x轴半径和y轴半径（或形状），后面跟一个at关键字，用于分开另外一组用于定义椭圆位置的x和y坐标*/
+				-webkit-clip-path: ellipse(100px 100px at 0% 50%);
+				clip-path: ellipse(100px 100px at 0% 50%);
+				animation: codingStartup 5s infinite;
+				/* 插入背景图 */
+				background-image: url(https://images.unsplash.com/photo-1579547621869-0ddb5f237392?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
+				background-size: 150%;
+				background-position: center center;
+				/* 文字背景图渐变 */
+				-webkit-background-clip: text;
+				background-clip: text;
+			}
+
+			@keyframes codingStartup {
+				0% {
+					clip-path: ellipse(100px 100px at 0% 50%);
+					-webkit-clip-path: ellipse(100px 100px at 0% 50%);
+				}
+
+				50% {
+					-webkit-clip-path: ellipse(100px 100px at 100% 50%);
+					clip-path: ellipse(100px 100px at 100% 50%);
+				}
+
+				100% {
+					clip-path: ellipse(100px 100px at 0% 50%);
+					-webkit-clip-path: ellipse(100px 100px at 0% 50%);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<h1 data-spotlight="Spotlight effect!">Spotlight effect!</h1>
+		<!-- CodingStartup -->
+	</body>
+</html>
